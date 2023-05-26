@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pong Multiplayer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1 id="title-gamer">Jogo do Pong</h1>
+    <div id="load">
+      <div class="waiting-for-player">
+        <h2>Aguardando outro jogador...</h2>
+        <div class="loader"></div>
+      </div>
+    </div>
+    
+    <div style="display: none;" id="game">
+      <canvas id="canvas-placar" width="200" height="200"> 2 x2 </canvas>
+      <canvas id="canvas-jogo"></canvas>
+      <canvas id="canvas-bola"></canvas>
+    </div>
+    <div id="pontuacao"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script src="/socket.js"></script>
+  </body>
