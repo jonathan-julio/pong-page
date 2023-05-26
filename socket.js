@@ -1,4 +1,4 @@
-const socket = io("https://99d7-177-89-225-229.ngrok-free.app");
+const socket = io("https://7a9d-177-89-225-229.ngrok-free.app");
 var initGame = false;
 const canvas = document.getElementById('canvas-jogo');
 const context = canvas.getContext('2d');
