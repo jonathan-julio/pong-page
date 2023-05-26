@@ -77,6 +77,7 @@ socket.on('startGame', function(msg) {
   opponentY = 50;
   document.getElementById('load').style.display = 'none';
   document.getElementById('game').style.display = 'block';
+  document.getElementById('pontuacao').style.display = 'block';
 });
 
 socket.on('ballPosition', function (data) {
