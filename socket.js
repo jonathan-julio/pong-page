@@ -42,7 +42,7 @@ function tentarConectarNgrok(urlNgrok, tentativas, intervalo) {
       .catch(() => {
         contador++;
         console.log(`Falha na conexão com Ngrok - Tentativa ${contador}`);
-        alterarConteudoElemento('none', `Servidor não disponível.<br> Tentativa de conexão: ${contador}`);
+        alterarConteudoElemento('none', 'Servidor não disponível.<br> Tentativa de conexão:' + contador);
         if (contador >= tentativas) {
           console.log('Limite de tentativas atingido. Servidor não disponível.');
         } else {
