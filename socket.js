@@ -18,7 +18,7 @@ function testarConexaoNgrok(urlNgrok) {
 
 // Função para alterar o conteúdo do elemento HTML
 function alterarConteudoElemento(display, texto) {
-  document.querySelector('.loader').style.display = display ;
+  document.querySelector('.loader').style.display = ''+display ;
   const elemento = document.getElementById('load');
   if (elemento) {
     elemento.innerHTML = '<div class="waiting-for-player"> <h2>'+ texto +'</h2> <div class="loader"></div> </div> ';
