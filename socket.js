@@ -22,7 +22,6 @@ function alterarConteudoElemento(display, texto) {
   if (elemento) {
     elemento.innerHTML = '<div class="waiting-for-player"> <h2>'+ texto +'</h2> <div class="loader"></div> </div> ';
   }
-  document.querySelector('.loader').style.display = display ;
 }
 
 // Link do Ngrok que será testado
@@ -54,6 +53,7 @@ function tentarConectarNgrok(urlNgrok, tentativas, intervalo) {
   tentativa();
 }
 
+tentarConectarNgrok(linkNgrok, 10, 3000);
 
 const socket = io.connect(linkNgrok);
 console.log(socket);
