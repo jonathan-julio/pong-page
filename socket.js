@@ -37,6 +37,7 @@ function tentarConectarNgrok(urlNgrok, tentativas, intervalo) {
       .then(() => {
         console.log('Conexão com Ngrok estabelecida');
         alterarConteudoElemento('block', 'Aguardando outro jogador...');
+        location.reload();
       })
       .catch(() => {
         contador++;
