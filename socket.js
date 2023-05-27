@@ -18,26 +18,42 @@ function testarConexaoNgrok(urlNgrok) {
 
 // Função para alterar o conteúdo do elemento HTML
 function alterarConteudoElemento(display, texto) {
-  document.querySelector('.loader').style.display = ''+display ;
   const elemento = document.getElementById('load');
   if (elemento) {
     elemento.innerHTML = '<div class="waiting-for-player"> <h2>'+ texto +'</h2> <div class="loader"></div> </div> ';
   }
+  document.querySelector('.loader').style.display = display ;
 }
 
 // Link do Ngrok que será testado
 const linkNgrok = 'https://36bb-177-89-225-229.ngrok-free.app/';
 
 // Testar a conexão com o link Ngrok
-testarConexaoNgrok(linkNgrok)
-  .then(() => {
-    console.log('Conexão com Ngrok estabelecida');
-    alterarConteudoElemento('block','Aguardando outro jogador...');
-  })
-  .catch(() => {
-    console.log('Falha na conexão com Ngrok');
-    alterarConteudoElemento('none','Servidor não disponível');
-  });
+
+function tentarConectarNgrok(urlNgrok, tentativas, intervalo) {
+  let contador = 0;
+
+  function tentativa() {
+    testarConexaoNgrok(urlNgrok)
+      .then(() => {
+        console.log('Conexão com Ngrok estabelecida');
+      alterarConteudoElemento('block','Aguardando outro jogador...');
+      })
+      .catch(() => {
+        contador++;
+        console.log('Falha na conexão com Ngrok - Tentativa ' + contador);
+        alterarConteudoElemento('none','Servidor não disponível.'+'<br>'+' Tentativa de conexão: ' + contador);
+        if (contador >= tentativas) {
+          console.log('Limite de tentativas atingido. Servidor não disponível.');
+        } else {
+          setTimeout(tentativa, intervalo);
+        }
+      });
+  }
+
+  tentativa();
+}
+
 
 const socket = io.connect(linkNgrok);
 console.log(socket);
