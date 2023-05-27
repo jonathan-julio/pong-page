@@ -17,11 +17,11 @@ function testarConexaoNgrok(urlNgrok) {
 }
 
 // Função para alterar o conteúdo do elemento HTML
-function alterarConteudoElemento() {
-  document.getElementById('load').style.display = 'none';
+function alterarConteudoElemento(display, texto) {
+  document.querySelector('.loader').style.display = display ;
   const elemento = document.getElementById('load');
   if (elemento) {
-    elemento.innerHTML = '<div class="waiting-for-player"> <h2>Servidor não disponível</h2> <div class="loader"></div> </div> ';
+    elemento.innerHTML = '<div class="waiting-for-player"> <h2>'+ texto +'</h2> <div class="loader"></div> </div> ';
   }
 }
 
@@ -32,10 +32,11 @@ const linkNgrok = 'https://36bb-177-89-225-229.ngrok-free.app/';
 testarConexaoNgrok(linkNgrok)
   .then(() => {
     console.log('Conexão com Ngrok estabelecida');
+    alterarConteudoElemento('block','Aguardando outro jogador...');
   })
   .catch(() => {
     console.log('Falha na conexão com Ngrok');
-    alterarConteudoElemento();
+    alterarConteudoElemento('none','Servidor não disponível');
   });
 
 const socket = io.connect(linkNgrok);
