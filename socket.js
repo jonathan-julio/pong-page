@@ -1,4 +1,43 @@
-const socket = io.connect('https://36bb-177-89-225-229.ngrok-free.app/');
+function testarConexaoNgrok(urlNgrok) {
+  return new Promise((resolve, reject) => {
+    const request = new XMLHttpRequest();
+    request.open('GET', urlNgrok);
+    request.onload = function() {
+      if (request.status === 200) {
+        resolve();
+      } else {
+        reject();
+      }
+    };
+    request.onerror = function() {
+      reject();
+    };
+    request.send();
+  });
+}
+
+// Função para alterar o conteúdo do elemento HTML
+function alterarConteudoElemento() {
+  const elemento = document.getElementById('load');
+  if (elemento) {
+    elemento.innerHTML = '<h2>Servidor não disponível</h2>';
+  }
+}
+
+// Link do Ngrok que será testado
+const linkNgrok = 'https://36bb-177-89-225-229.ngrok-free.app/';
+
+// Testar a conexão com o link Ngrok
+testarConexaoNgrok(linkNgrok)
+  .then(() => {
+    console.log('Conexão com Ngrok estabelecida');
+  })
+  .catch(() => {
+    console.log('Falha na conexão com Ngrok');
+    alterarConteudoElemento();
+  });
+
+const socket = io.connect(linkNgrok);
 console.log(socket);
 var initGame = false;
 const canvas = document.getElementById('canvas-jogo');
