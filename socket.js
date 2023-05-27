@@ -21,7 +21,6 @@ function alterarConteudoElemento(display, texto) {
   const elemento = document.getElementById('load');
   if (elemento) {
     elemento.innerHTML = `<div class="waiting-for-player"><h2>${texto}</h2><div class="loader"></div></div>`;
-    elemento.style.display = display;
   }
 }
 
