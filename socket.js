@@ -70,30 +70,6 @@ const contextPlacar = canvasPlacar.getContext('2d');
 const pontuacaoElement = document.getElementById('pontuacao');
 
 
-
-// Função para testar a conexão com o URL
-function testarConexao() {
-  var xhr = new XMLHttpRequest();
-  var url = "https://36bb-177-89-225-229.ngrok-free.app/socket.io/socket.io.js";
-  xhr.open("GET", url, true);
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      console.log("Conexão bem-sucedida");
-    } else {
-      var divLoad = document.getElementById("load");
-      divLoad.innerHTML = "<h2>Servidor não disponível</h2>";
-      console.log("Servidor não disponível");
-    }
-  };
-  xhr.onerror = function() {
-    var divLoad = document.getElementById("load");
-    divLoad.innerHTML = "<h2>Servidor não disponível</h2>";
-    console.log("Servidor não disponível");
-  };
-  xhr.send();
-}
-testarConexao();
-
 socket.on('connect', function () {
   console.log('Conectado ao servidor:', socket.id);
 });
