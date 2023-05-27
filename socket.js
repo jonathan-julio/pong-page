@@ -18,9 +18,10 @@ function testarConexaoNgrok(urlNgrok) {
 
 // Função para alterar o conteúdo do elemento HTML
 function alterarConteudoElemento() {
+  document.getElementById('load').style.display = 'none';
   const elemento = document.getElementById('load');
   if (elemento) {
-    elemento.innerHTML = '<h2>Servidor não disponível</h2>';
+    elemento.innerHTML = '<div class="waiting-for-player"> <h2>Servidor não disponível</h2> <div class="loader"></div> </div> ';
   }
 }
 
