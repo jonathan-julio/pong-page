@@ -1,4 +1,5 @@
 const socket = io.connect('https://36bb-177-89-225-229.ngrok-free.app/');
+console.log(socket);
 var initGame = false;
 const canvas = document.getElementById('canvas-jogo');
 const context = canvas.getContext('2d');
@@ -28,6 +29,8 @@ let velocidadeBolaY = 1; // Velocidade vertical da bola
 const canvasPlacar = document.getElementById('canvas-placar');
 const contextPlacar = canvasPlacar.getContext('2d');
 const pontuacaoElement = document.getElementById('pontuacao');
+
+
 
 // Função para testar a conexão com o URL
 function testarConexao() {
