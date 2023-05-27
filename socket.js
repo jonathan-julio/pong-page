@@ -47,6 +47,13 @@ socket.on('init', function(data) {
   initGame = data;
 });
 
+socket.on('waiting', function(msg) {
+  document.getElementById('game').style.display = 'none';
+  document.getElementById('load').style.display = 'block';
+  document.getElementById('pontuacao').style.display = 'none';
+  alert(msg);
+});
+
 socket.on('startGame', function(msg) {
   var mensagem = "";
   if (msg['message'] === "Jogo iniciou" && document.getElementById('load').style.display !== 'none') {
