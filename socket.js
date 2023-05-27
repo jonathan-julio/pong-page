@@ -1,3 +1,6 @@
+// Link do Ngrok que será testado
+const linkNgrok = 'https://3ab9-177-89-225-229.ngrok-free.app/';
+
 function testarConexaoNgrok(urlNgrok) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
@@ -23,9 +26,6 @@ function alterarConteudoElemento(display, texto) {
     elemento.innerHTML = `<div class="waiting-for-player"><h2>${texto}</h2><div class="loader"></div></div>`;
   }
 }
-
-// Link do Ngrok que será testado
-const linkNgrok = 'https://36bb-177-89-225-229.ngrok-free.app/';
 
 // Testar a conexão com o link Ngrok
 
