@@ -58,7 +58,6 @@ tentarConectarNgrok(linkNgrok, 10, 3000);
 
 
 const socket = io.connect(linkNgrok);
-console.log(socket);
 var initGame = false;
 const canvas = document.getElementById('canvas-jogo');
 const context = canvas.getContext('2d');
@@ -115,20 +114,25 @@ socket.on('waiting', function(msg) {
   alert(msg);
 });
 
+
+
 socket.on('startGame', function(msg) {
   var mensagem = "";
-  if (msg['message'] === "Jogo iniciou" && document.getElementById('load').style.display !== 'none') {
-      mensagem = "Jogo iniciou s";
+  if (msg['message'] === "Jogo iniciou" && document.getElementById('load').style.display !== 'block') {
+      mensagem = "Jogo iniciou";
   }else{
       mensagem = "O jogo reiniciou";
+      pontoPlay1 = 0;
+      pontoPlay2 = 0;
   }
-  showDialog(mensagem).then((confirmed) => {
+  alert(mensagem)
+  /* showDialog(mensagem).then((confirmed) => {
       if (confirmed) {
-        socket.emit('initGame', {status : true, canvasWidth : canvas.width , canvasHeight : canvas.height});
+        socket.emit('initGame', {"status" : true, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height});
       } else {
-        socket.emit('initGame', {status : false, canvasWidth : canvas.width , canvasHeight : canvas.height});
+        socket.emit('initGame', {"status" : false, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height});
       }
-    });
+    }); */
   myPlayerString = msg['role'];
   if (msg['role'] == "player2") {
       ladoOponente = (bolaX - ballRadius < 0 );
@@ -141,6 +145,11 @@ socket.on('startGame', function(msg) {
       oponentePlayer = canvas.width - larguraRaquete - 1;
       myPlayer = 1;
   }
+  var button = document.getElementById("playPauseButton");
+  button.innerHTML = "pausar";
+  togglePlayPause()
+  pontoPlay1 = 0;
+  pontoPlay2 = 0;
   playerY = 50;
   opponentY = 50;
   document.getElementById('load').style.display = 'none';
@@ -174,6 +183,17 @@ socket.on('pontos', function (data) {
     contextPlacar.fillText(`Pontuação: ${pontoPlay1} x ${pontoPlay2} `, 10, 30);
     pontuacaoElement.textContent = `Pontuação: ${pontoPlay1} x ${pontoPlay2}`;
 });
+
+function togglePlayPause() {
+  var button = document.getElementById("playPauseButton");
+  if (button.innerHTML === "iniciar") {
+    button.innerHTML = "Pausar";
+    socket.emit('initGame', {"status" : true, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height}); // Envia o evento via socket quando muda para "play"
+  } else {
+    button.innerHTML = "iniciar";
+    socket.emit('initGame', {"status" : false, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height});; // Envia o evento via socket quando muda para "pause"
+  }
+}
 
 
 
