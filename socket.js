@@ -28,15 +28,15 @@ function alterarConteudoElemento(display, texto) {
 }
 
 function togglePlayPause() {
-          var button = document.getElementById("playPauseButton");
-          if (button.innerHTML === "iniciar") {
-            button.innerHTML = "Pausar";
-            socket.emit('initGame', {"status" : true, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height}); // Envia o evento via socket quando muda para "play"
-          } else {
-            button.innerHTML = "iniciar";
-            socket.emit('initGame', {"status" : false, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height});; // Envia o evento via socket quando muda para "pause"
-          }
-        }
+  var button = document.getElementById("playPauseButton");
+  if (button.innerHTML === "iniciar") {
+      button.innerHTML = "Pausar";
+      socket.emit('initGame', {"status" : true, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height}); // Envia o evento via socket quando muda para "play"
+  } else {
+      button.innerHTML = "iniciar";
+      socket.emit('initGame', {"status" : false, "canvasWidth" : canvas.width , "canvasHeight" : canvas.height});; // Envia o evento via socket quando muda para "pause"
+  }
+}
 
 // Testar a conexão com o link Ngrok
 
