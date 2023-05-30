@@ -7,20 +7,23 @@
     <link rel="stylesheet" href="https://jonathan-julio.github.io/pong-page/style.css">
   </head>
   <body>
-    <h1 id="title-gamer">Jogo do Pong</h1>
-    <div id="load">
-      <div class="waiting-for-player">
-        <h2>Aguardando outro jogador...</h2>
-        <div class="loader"></div>
-      </div>
+  <h1 id="title-gamer">Jogo do Pong</h1>
+  <div id="load">
+    <div class="waiting-for-player">
+      <h2>Aguardando outro jogador...</h2>
+      <div class="loader"></div>
     </div>
-    
-    <div style="display: none;" id="game">
-      <canvas id="canvas-placar" width="200" height="200"> 2 x2 </canvas>
-      <canvas id="canvas-jogo"></canvas>
-      <canvas id="canvas-bola"></canvas>
+  </div>
+  
+  <div style="display: none;" id="game">
+    <div class="score-container">
+      <div id="pontuacao">Pontuação: 0 x 0</div>
+      <button id="playPauseButton" onclick="togglePlayPause()">Iniciar</button>
     </div>
-    <div style="display: none;" id="pontuacao"></div>
+    <canvas id="canvas-placar" width="200" height="200"></canvas>
+    <canvas id="canvas-jogo"></canvas>
+    <canvas id="canvas-bola"></canvas>
+  </div>
 
     <script src="https://3ab9-177-89-225-229.ngrok-free.app/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
