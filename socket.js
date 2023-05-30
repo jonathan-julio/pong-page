@@ -1,5 +1,5 @@
 // Link do Ngrok que será testado
-const linkNgrok = 'https://44e8-177-89-225-229.ngrok-free.app/';
+const linkNgrok = 'https://945e-177-89-225-229.ngrok-free.app/';
 
 function testarConexaoNgrok(urlNgrok) {
   return new Promise((resolve, reject) => {
