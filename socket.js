@@ -37,27 +37,7 @@ function tentarConectarNgrok(urlNgrok, tentativas, intervalo) {
       .then(() => {
         console.log('Conexão com Ngrok estabelecida');
         alterarConteudoElemento('block', 'Aguardando outro jogador...');
-        location.reload();
-      })
-      .catch(() => {
-        contador++;
-        console.log('Falha na conexão com Ngrok - Tentativa: ', contador);
-        alterarConteudoElemento('none', 'Servidor não disponível.<br> Tentativa de conexão:' + contador);
-        if (contador >= tentativas) {
-          console.log('Limite de tentativas atingido. Servidor não disponível.');
-        } else {
-          setTimeout(tentativa, intervalo);
-        }
-      });
-  }
-
-  tentativa();
-}
-
-tentarConectarNgrok(linkNgrok, 10, 3000);
-
-
-const socket = io.connect(linkNgrok);
+        const socket = io.connect(linkNgrok);
 var initGame = false;
 const canvas = document.getElementById('canvas-jogo');
 const context = canvas.getContext('2d');
@@ -274,3 +254,23 @@ function showDialog(message) {
     resolve(result);
   });
 }
+      })
+      .catch(() => {
+        contador++;
+        console.log('Falha na conexão com Ngrok - Tentativa: ', contador);
+        alterarConteudoElemento('none', 'Servidor não disponível.<br> Tentativa de conexão:' + contador);
+        if (contador >= tentativas) {
+          console.log('Limite de tentativas atingido. Servidor não disponível.');
+        } else {
+          setTimeout(tentativa, intervalo);
+        }
+      });
+  }
+
+  tentativa();
+}
+
+tentarConectarNgrok(linkNgrok, 10, 3000);
+
+
+
