@@ -27,7 +27,7 @@ function alterarConteudoElemento(display, texto) {
   }
 }
 
-function togglePlayPause() {
+function togglePlayPause(socket) {
   var button = document.getElementById("playPauseButton");
   if (button.innerHTML === "iniciar") {
       button.innerHTML = "Pausar";
@@ -138,7 +138,7 @@ function tentarConectarNgrok(urlNgrok, tentativas, intervalo) {
           }
           var button = document.getElementById("playPauseButton");
           button.innerHTML = "pausar";
-          togglePlayPause()
+          togglePlayPause(socket)
           pontoPlay1 = 0;
           pontoPlay2 = 0;
           playerY = 50;
